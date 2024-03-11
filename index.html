@@ -5,148 +5,281 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ App</title>
     <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f4f4;
-        margin: 20px;
-        text-align: center;
-    }
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Ruda:wght@400;600;700&display=swap");
 
-    #quiz-container {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-    h2 {
-        color: #333;
-    }
+body {
+  background: rgb(77, 14, 203);
+  background: radial-gradient(
+    circle,
+    rgba(77, 14, 203, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  font-family: "poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+.quiz-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
 
-    li {
-        background-color: #4CAF50;
-        color: #fff;
-        padding: 10px;
-        margin: 5px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
-    li:hover {
-        background-color: #45a049;
-    }
+.quiz-header h2 {
+  font-size: 1.5rem;
+}
 
-    button {
-        background-color: #008CBA;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-        transition: background-color 0.3s;
-    }
+.quiz-header p {
+  background: #111;
+  padding: 0.4rem 1rem;
+  color: #fff;
+  border-radius: 5px;
+}
 
-    button:hover {
-        background-color: #005b7f;
-    }
+.quiz-body {
+  padding: 2rem 2rem;
+}
 
-    #result {
-        margin-top: 10px;
-        color: #333;
-    }
+.quiz-body h2 {
+  padding: 1rem 0;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+
+.quiz-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-body ul li {
+  margin: 1rem 0;
+  font-size: 1rem;
+  border: 1px solid #aab7b8;
+  padding: 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quiz-body ul li label {
+  cursor: pointer;
+  padding: 0 0.4rem;
+}
+
+.quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-footer button {
+  padding: 0.6rem 1.5rem;
+  outline: none;
+  background: #111;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 5px;
+  color: #fff;
+  opacity: 0.9;
+  transition: 0.3s ease-in-out;
+}
+
+.quiz-body button {
+  padding: 0.6rem 1rem;
+  outline: none;
+  background: #111;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 5px;
+  color: #fff;
+  opacity: 0.9;
+  transition: 0.3s ease-in-out;
+  display: block;
+  margin: 0 auto;
+}
+
+.quiz-footer button:hover {
+  opacity: 1;
+}
 </style>
 
 </head>
 <body>
-
-<div id="quiz-container">
-    <h2 id="question"></h2>
-    <ul id="options"></ul>
-    <button onclick="nextQuestion()">Next</button>
-    <p id="result"></p>
-</div>
+<div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 class="header-txt">Technology Quiz</h2>
+      </div>
+      <div class="quiz-body">
+        <h2 id="question">Question Text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer" />
+            <label for="a" id="a_text">Questions</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer" />
+            <label for="b" id="b_text">Questions</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer" />
+            <label for="c" id="c_text">Questions</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer" />
+            <label for="d" id="d_text">Questions</label>
+          </li>
+        </ul>
+      </div>
+      <div class="quiz-footer">
+        <div class="quiz-details"></div>
+        <button type="button" id="btn">Submit</button>
+      </div>
+    </div>
 
 <script>
-    // Define your quiz data as text
-    var quizData = [
-        {
-            question: "What is the capital of France?",
-            options: ["Paris", "London", "Berlin", "Madrid"],
-            correctAnswer: "Paris"
-        },
-        {
-            question: "Which planet is known as the Red Planet?",
-            options: ["Earth", "Mars", "Venus", "Jupiter"],
-            correctAnswer: "Mars"
-        },
-        {
-            question: "What is the largest mammal on Earth?",
-            options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-            correctAnswer: "Blue Whale"
-        }
-        // Add more questions as needed
-    ];
+    "use strict";
 
-    var currentQuestion = 0;
-    var score = 0;
+const quizData = [
+ {
+  question: "Where is the correct place to insert a JavaScript?",
+  a: "The <head> section",
+  b: "The <body> section",
+  c: "Both the <head> and the <body> section are correct",
+  d: "none of the above",
+  correct: "c"
+ },
 
-    function loadQuestion() {
-        var questionElement = document.getElementById("question");
-        var optionsElement = document.getElementById("options");
-        var resultElement = document.getElementById("result");
+ {
+  question: "Which language runs in a web browser?",
+  a: "Java",
+  b: "C",
+  c: "Python",
+  d: "JavaScript",
+  correct: "d"
+ },
+ {
+  question: "What does CSS stand for?",
+  a: "Central Style Sheets",
+  b: "Cascading Style Sheets",
+  c: "Cascading Simple Sheets",
+  d: "Cars SUVs Sailboats",
+  correct: "b"
+ },
+ {
+  question: "What does HTML stand for?",
+  a: "Hypertext Markup Language",
+  b: "Hypertext Markdown Language",
+  c: "Hyperloop Machine Language",
+  d: "Helicopters Terminals Motorboats Lamborginis",
+  correct: "a"
+ },
+ {
+  question: "What year was JavaScript launched?",
+  a: "1996",
+  b: "1995",
+  c: "1994",
+  d: "none of the above",
+  correct: "b"
+ }
+];
 
-        questionElement.textContent = quizData[currentQuestion].question;
+const quiz = document.querySelector(".quiz-body");
+const answerEl = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const footerEl = document.querySelector(".quiz-footer");
+const quizDetailEl = document.querySelector(".quiz-details");
+const liEl = document.querySelector("ul li");
 
-        // Clear previous options
-        optionsElement.innerHTML = "";
+const a_txt = document.getElementById("a_text");
+const b_txt = document.getElementById("b_text");
+const c_txt = document.getElementById("c_text");
+const d_txt = document.getElementById("d_text");
+const btnSubmit = document.getElementById("btn");
 
-        // Populate options
-        quizData[currentQuestion].options.forEach(function (option, index) {
-            var li = document.createElement("li");
-            li.textContent = option;
-            li.onclick = function () {
-                checkAnswer(option);
-            };
-            optionsElement.appendChild(li);
-        });
+let currentQuiz = 0;
+let score = 0;
 
-        resultElement.textContent = "Score: " + score;
-    }
+loadQuiz();
 
-    function checkAnswer(selectedOption) {
-        var correctAnswer = quizData[currentQuestion].correctAnswer;
-        var resultElement = document.getElementById("result");
+function loadQuiz() {
+ deselectAnswers();
+ const currentQuizData = quizData[currentQuiz];
+ questionEl.innerText = currentQuizData.question;
+ a_txt.innerText = currentQuizData.a;
+ b_txt.innerText = currentQuizData.b;
+ c_txt.innerText = currentQuizData.c;
+ d_txt.innerText = currentQuizData.d;
+ quizDetailEl.innerHTML = `<p>${currentQuiz + 1} of ${quizData.length}</p>`;
+}
 
-        if (selectedOption === correctAnswer) {
-            score++;
-            resultElement.textContent = "Correct! Score: " + score;
-        } else {
-            resultElement.textContent = "Incorrect. The correct answer is: " + correctAnswer + ". Score: " + score;
-        }
-    }
+// deselect
+function deselectAnswers() {
+ answerEl.forEach((answerEl) => {
+  answerEl.checked = false;
+ });
+}
 
-    function nextQuestion() {
-        if (currentQuestion < quizData.length - 1) {
-            currentQuestion++;
-            loadQuestion();
-        } else {
-            alert("Quiz completed. Your final score is: " + score);
-            // You can add more logic here, such as resetting the quiz or displaying a summary.
-        }
-    }
+// get selected
+function getSelected() {
+ let answer;
+ answerEl.forEach((answerEls) => {
+  if (answerEls.checked) {
+   answer = answerEls.id;
+  }
+ });
+ return answer;
+}
 
-    // Initial load
-    loadQuestion();
+btnSubmit.addEventListener("click", function () {
+ const answers = getSelected();
+
+ if (answers) {
+  if (answers === quizData[currentQuiz].correct) {
+   score++;
+  }
+  nextQuestion();
+ }
+});
+
+// next Slide
+function nextQuestion() {
+ currentQuiz++;
+
+ if (currentQuiz < quizData.length) {
+  loadQuiz();
+ } else {
+  quiz.innerHTML = `<h2>You answered ${score}/${quizData.length} question correctly</h2>
+    <button type="button" onclick="location.reload()">Reload</button>
+    `;
+  footerEl.style.display = "none";
+ }
+}
 </script>
 
 </body>
